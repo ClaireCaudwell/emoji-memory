@@ -17,8 +17,8 @@ const gameNames = [
     "Animal emoji's 🐬",
 ];
 
-let symbolOne;
-let symbolTwo;
+let emojiOne;
+let emojiTwo;
 let arrayIndex = 0;
 let clicks = 0;
 let points = 0;
@@ -33,7 +33,7 @@ let pointsText = undefined;
 // The modulus operator checks if the number is equally divisible by 3, if not then it will return the original number e.g. 1, 2
 // If the arrayIndex is 3 then it's equally divisible by itself and the remainder is 0. This sets the arrayIndex to back to 0    
 // Using the modulus operator to assign the arrayIndex back to 0 when all emojiTypeMap (3 elements) elements have been looped through
-const gameTypeRandomizer = () => {
+const shuffleGameType = () => {
     arrayIndex = (arrayIndex + 1) % 3;
     finalEmojiGameSelection = [...emojiTypeMap[arrayIndex], ...emojiTypeMap[arrayIndex]];
     document.getElementById("gameTypeTitle").innerHTML = `${gameNames[arrayIndex]}`;
@@ -49,10 +49,10 @@ const memoryRandomizer = () => {
 };
 
 const clearText = () => {
-    symbolOne.innerText = "";
-    symbolTwo.innerText= "";
-    symbolOne.style.backgroundColor = "rgb(245, 245, 101)";
-    symbolTwo.style.backgroundColor = "rgb(245, 245, 101)";
+    emojiOne.innerText = "";
+    emojiTwo.innerText= "";
+    emojiOne.style.backgroundColor = "rgb(245, 245, 101)";
+    emojiTwo.style.backgroundColor = "rgb(245, 245, 101)";
     setTimeout(playAgain, 1000);
     clicks = 0;
 };
@@ -84,7 +84,7 @@ const playAgain = () => {
 // Function that checks if the strings are a match
 // Called when clicks is === 2 in if statement below
 const checkResult = () => { 
-    if(symbolOne.innerText === symbolTwo.innerText) {
+    if(emojiOne.innerText === emojiTwo.innerText) {
         gameStatusText.innerHTML = "It's a match 👌!";
         setTimeout(playAgain, 2000);       
         clicks = 0;
@@ -96,7 +96,7 @@ const checkResult = () => {
     }
 };
 
-const showWord = () => {
+const showEmoji = () => {
     const p_tag = event.target;
     if(p_tag.innerText === "") {
         clicks +=1;
@@ -105,11 +105,11 @@ const showWord = () => {
             gameStarted = true;
             chooseGameButton.disabled = true;
             if(clicks === 1) {
-                symbolOne = p_tag;
-                symbolOne.style.backgroundColor = "rgb(230, 230, 62)";
+                emojiOne = p_tag;
+                emojiOne.style.backgroundColor = "rgb(230, 230, 62)";
             } else if (clicks === 2) {
-                symbolTwo = p_tag;
-                symbolTwo.style.backgroundColor = "rgb(230, 230, 62)";
+                emojiTwo = p_tag;
+                emojiTwo.style.backgroundColor = "rgb(230, 230, 62)";
                 checkResult();
             }
         }
@@ -118,13 +118,13 @@ const showWord = () => {
 
 // Things you want done when page is loaded
 const initalise = () => {
-    gameTypeRandomizer();
+    shuffleGameType();
     for(let j = 0; j < finalEmojiGameSelection.length; j++) { 
         // Create a p tag for the length of the flowerNames array
         const cardTag = document.createElement("p");
         cardTag.className = "card-text"; 
         cardTag.id = "card";
-        cardTag.addEventListener("click", showWord);       
+        cardTag.addEventListener("click", showEmoji);       
         // variable that stores p tag is object so you can create a new property for that object (pindex in this case) and assign it the loops index j
         cardTag.pindex = j;
         // Then get the specific html id and add the p tag to it
