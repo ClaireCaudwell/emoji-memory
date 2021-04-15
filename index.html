@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">  
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600&display=swap" rel="stylesheet">
+        <link rel="icon" href="/favicon.svg" />
+        <title>Emoji memory</title>
+    </head>
+    <body>
+        <main>
+            <section class="outer-section">
+                <section class="header-section">
+                    <h1>Emoji memory game</h1>
+                </section>
+                <section class="section-container">
+                    <div class="select-pointstext-container">
+                        <button class="choose-emoji-button restart-button" id="chooseGameButton" onClick="gameTypeRandomizer()">CHOOSE EMOJI'S</button>
+                        <p id="gameTypeTitle" class="game-type-text"></p>
+                    </div>
+                    <p id="points" class="points-text"><span class="bold">Points:</span> </p>
+                    <div class="memory-card-container" id="memoryCardContainer">
+                    </div>
+                    <div class="result-container" id="resultDiv">
+                        <p id="gameStatus">Click two cards to find a match</p>
+                        <button id="restartButton" class="restart-button">RESTART GAME</button>
+                    </div>
+                </section>
+                <section class="footer-section">
+                    <p>Emoji memory game created by Claire Caudwell April 2021</p>
+                </section>
+            </section>
+        </main>
+    </body>
+</html>
